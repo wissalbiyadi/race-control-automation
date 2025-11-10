@@ -1,0 +1,8 @@
+=== RACE CONTROL LOG START ===
+[00:10] FLAG CHANGE: sector_1 green → yellow
+[00:25] FLAG CHANGE: sector_2 green → yellow
+[00:45] FLAG CHANGE: sector_1 yellow → green
+[00:45] FLAG CHANGE: sector_2 yellow → green
+[00:45] ALERT: sector_1 yellow flag lasted 35s — auto-log incident
+[01:00] FLAG CHANGE: sector_3 green → red
+[01:00] ALERT: RED FLAG in sector_3 at 01:00 — suspend session
