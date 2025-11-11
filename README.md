@@ -1,12 +1,14 @@
 # 🏎️ Race Control Automation
 
+[![Streamlit App](https://img.shields.io/badge/🚀%20Live%20App-Streamlit-blue?logo=streamlit&logoColor=white)](https://race-control-automation.streamlit.app)
+
 A real-time dashboard simulating F1 race control using sector flag data. Monitors flag changes and generates automated alerts. Includes fallback to mock data when live API is unreachable or incomplete.
 
 ---
 
 ## 📺 Live Demo
 
-**🔗 Deployed App:** [Try the Dashboard](https://wissalbiyadi-race-control-automation.streamlit.app/)
+**🔗 Deployed App:** [Try the Dashboard](https://race-control-automation.streamlit.app/)
 
 ---
 
