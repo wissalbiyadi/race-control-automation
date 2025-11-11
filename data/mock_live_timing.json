@@ -1,0 +1,42 @@
+[
+  {
+    "time": "00:00",
+    "sector_flags": {
+      "sector_1": "green",
+      "sector_2": "green",
+      "sector_3": "green"
+    }
+  },
+  {
+    "time": "00:10",
+    "sector_flags": {
+      "sector_1": "yellow",
+      "sector_2": "green",
+      "sector_3": "green"
+    }
+  },
+  {
+    "time": "00:25",
+    "sector_flags": {
+      "sector_1": "yellow",
+      "sector_2": "yellow",
+      "sector_3": "green"
+    }
+  },
+  {
+    "time": "00:45",
+    "sector_flags": {
+      "sector_1": "green",
+      "sector_2": "green",
+      "sector_3": "green"
+    }
+  },
+  {
+    "time": "01:00",
+    "sector_flags": {
+      "sector_1": "green",
+      "sector_2": "green",
+      "sector_3": "red"
+    }
+  }
+]
