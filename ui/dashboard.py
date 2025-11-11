@@ -3,7 +3,7 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 import streamlit as st
-from src.data_feed import load_mock_data
+from src.data_feed import load_mock_data, load_live_data
 from src.flag_logic import detect_flag_changes
 from src.alerts import process_alerts
 
@@ -14,8 +14,45 @@ if "frame_index" not in st.session_state:
     st.session_state.alerts = []
     st.session_state.log = []
 
-# Load mock data
-data = load_mock_data()
+# Load data: Try live data, fallback to mock
+USE_LIVE_DATA = True  # Toggle this on/off
+
+data = None
+
+# Load data: Try live API first, fall back if invalid or missing required fields
+# Attempt to fetch live data from the OpenF1 API
+if USE_LIVE_DATA:
+    live_data = load_live_data()
+
+    # Check if the response is a non-empty list and contains dictionary elements
+    if isinstance(live_data, list) and len(live_data) > 0 and isinstance(live_data[0], dict):
+
+        # Confirm that the expected structure is present
+        if "sector_flags" in live_data[0]:
+            # Data format is valid — proceed with live data
+            data = live_data
+            st.success("✅ Live race data loaded successfully.")
+            st.caption("✅ Using real-time data from OpenF1 API.")
+
+        else:
+            # API responded, but data structure is not compatible with our app
+            st.warning("⚠️ Live API responded, but required structure (e.g. 'sector_flags') is missing.")
+            st.info("ℹ️ Reverting to mock data for simulation.")
+
+            # Optional: show raw API response for debugging
+            with st.expander("📡 Raw API Response (Developer Debug View)"):
+                st.json(live_data)
+
+            data = load_mock_data()
+    else:
+        # API failed or returned unexpected type — fallback to mock
+        st.error("❌ Failed to fetch valid data from the live API.")
+        st.info("ℹ️ Reverting to mock data for simulation.")
+        data = load_mock_data()
+
+
+
+
 
 # Title
 st.title("🏁 Race Control Dashboard")

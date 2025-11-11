@@ -1,4 +1,12 @@
-from data_feed import load_mock_data, simulate_live_feed
+from data_feed import load_mock_data, load_live_data, simulate_live_feed
+
+USE_LIVE_DATA = False  # ← You can change this later
+
+if USE_LIVE_DATA:
+    data = load_live_data()
+else:
+    data = load_mock_data()
+
 from flag_logic import detect_flag_changes
 from alerts import process_alerts
 from logger import init_log, log_flag_change, log_alert
