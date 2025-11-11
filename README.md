@@ -1,53 +1,89 @@
-# 🏁 Race Control Automation
+# 🏎️ Race Control Automation
 
-A Python-based simulation of an FIA-style Race Control system for motorsport operations.
+A real-time dashboard simulating F1 race control using sector flag data. Monitors flag changes and generates automated alerts. Includes fallback to mock data when live API is unreachable or incomplete.
 
-## 💡 What It Does
-- Reads simulated live sector flag data
-- Detects flag changes (green → yellow, yellow → red)
-- Logs all flag events and alerts
-- Triggers race control alerts (e.g. yellow > 30s = incident log, red = suspend session)
-- Displays real-time GUI using Streamlit
+---
 
-## 🧠 Technologies Used
-- Python
-- Streamlit (GUI)
-- Pytest (Testing)
-- JSON (Mock live timing data)
+## 📺 Live Demo
+
+**🔗 Deployed App:** [Try the Dashboard](https://wissalbiyadi-race-control-automation.streamlit.app/)
+
+---
+
+## 🚀 Features
+
+- Real-time session monitoring from OpenF1 API
+- Fallback to mock data when:
+  - Live API is down
+  - API returns unexpected structure (e.g. missing `sector_flags`)
+- Alerts for:
+  - Red flags (session suspension)
+  - Long yellow flags (auto-logged incidents)
+- Developer Debug Panel: inspect raw API response if fallback is triggered
+- Automated tests for flag logic and data structure
+
+---
+
+## 🛠️ Tech Stack
+
+- **Python 3.9+**
+- **Streamlit** – Interactive UI
+- **Requests** – API integration
+- **Pandas** – (reserved for possible future use)
+- **BeautifulSoup** – (installed, not yet used)
+- **Pytest** – Unit testing
+
+---
 
 ## 📂 Project Structure
 
 ```
-race-control-automation/
-├── src/                  # Core backend logic (flags, alerts, data)
-├── ui/                   # Streamlit dashboard
-├── data/                 # Mock live timing feed
-├── tests/                # Pytest test suite
-├── venv/                 # Virtual environment (ignored by .gitignore)
-├── requirements.txt      # Dependencies
-└── README.md             # Project overview
-```
-
-## ▶️ How to Run
-
-```bash
-# 1. Clone the repo
-
-# 2. Create and activate a virtual environment
-
-# 3. Install dependencies:
-pip install -r requirements.txt
-
-# 4. Run the dashboard:
-streamlit run ui/dashboard.py
-```
-
-## 🧪 Run Tests
-
-```bash
-pytest tests/
+├── data
+│   └── mock_live_timing.json         # Fallback race data
+├── src
+│   ├── alerts.py                     # Alert logic
+│   ├── data_feed.py                  # Data loading (mock + live)
+│   ├── flag_logic.py                 # Sector flag change detection
+│   └── logger.py                     # Optional logging helpers
+├── ui
+│   └── dashboard.py                  # Streamlit app entry point
+├── tests
+│   ├── test_alerts.py
+│   ├── test_flag_logic.py
+│   └── test_data_feed.py            # ✅ Added test for fallback logic
+├── requirements.txt
+└── README.md
 ```
 
 ---
 
-✅ Built for aspiring motorsport engineers, operations analysts, and automation developers looking to showcase rule-based systems for Race Control or stewarding simulation.
+## 🧪 Run Tests
+
+```bash
+pytest
+```
+
+---
+
+## ▶️ Run Locally
+
+```bash
+git clone https://github.com/wissalbiyadi/race-control-automation
+cd race-control-automation
+pip install -r requirements.txt
+streamlit run ui/dashboard.py
+```
+
+---
+
+## 📝 License
+
+MIT
+
+---
+
+## 🙋‍♀️ Author
+
+Made with ❤️ by Wissal Biyadi
+
+Feel free to connect or give feedback!
