@@ -1,18 +1,24 @@
-# Ignore virtual environment
+# Virtual environment
 venv/
 
-# Ignore log files
+# Logs
 *.log
+race_control_log.txt
 
-# Ignore Python cache
+# Python cache
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
 *.pytest_cache/
 
-# Ignore Streamlit files
+# Streamlit
 .streamlit/
 
-# Ignore data if needed
+# JSON data files (only keep mock)
 *.json
+!data/mock_live_timing.json
+
+# System files (optional)
+.DS_Store
+Thumbs.db
